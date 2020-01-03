@@ -46,6 +46,6 @@ char *read_textfile(char *filename);
 char **tokenizar(char *buff, char *special);
 void push(int n);
 void check(char *buffer);
-
+int check_number(char *num);
 
 #endif
