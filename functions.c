@@ -50,37 +50,43 @@ char **tokenizar(char *buff, char *special)
 	return (token);
 }
 
-void check(char *buffer)
+int check(char *buffer, stack_t **header, unsigned int line_number)
 {
-	instruction_t op[] = {{"push", push}, {NULL, NULL}};
+	instruction_t op[] = {{"push", push}, {"pall", pall}, {NULL, NULL}};
 	int i = 0, is_num = 0, len = 0;
 	char **token;
-	stack_t **stack;
+	
+	token = tokenizar(buffer, " ");
+	len = count_ar(token);
+	if (len < 2 && ((strcmp(token[0], "push") == 0)))
+	{	
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
-	len = strlen(buffer);
-	if (len < 1)
+/*	printf("line number %d, len %d\n", line_number, len); */
+	
+	if (len >= 2)
 	{
-		fprintf(stderr, "L%d: usage: push integer", line_number);
-                exit(EXIT_FAILURE);
+		if ((is_num = check_number(token[1])) == 1)
+			number = atoi(token[1]);
 	}
-	stack = NULL;
-	if ((is_num = check_num(token[1])) == 1)
+
+	while (op[i].opcode != NULL)
 	{
-		token = tokenizar(buffer, " ");
-		number = atoi(token[1]);
-		while (op[i].opcode != NULL)
+		if (strcmp(token[0], op[i].opcode) == 0)
 		{
-			if (strcmp(token[0], op[i].opcode) == 0)
-				(op[i].f)(stack, line_number);
-			i++;
+			(op[i].f)(header, line_number);
+			break;
 		}
-		else
-		{
-                	printf(stderr, "L%d: usage: push integer", line_number);
-                	exit(EXIT_FAILURE);
-		}
+		i++;
 	}
-        	
+	if (op[i].opcode == NULL)
+	{	
+		fprintf(stderr, "L%d: unknown instructions %s\n", line_number, token[0]);
+                       exit(EXIT_FAILURE);
+	}
+	return (0);
 }
 
 /*
@@ -100,4 +106,13 @@ int check_number(char *num)
                 i++;
         }
         return (1);
+}
+
+int count_ar(char **token)
+{
+	int i = 0;
+	
+	while (token[i])
+		i++;
+	return (i);
 }

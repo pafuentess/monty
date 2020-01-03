@@ -10,7 +10,7 @@
 * @index: index of nth node
 * Return: head in the index position
 */
-dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
+stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index)
 {
 	unsigned int i;
 
@@ -30,7 +30,7 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 * @head: head of a linked list
 * Return: sum
 */
-int sum_dlistint(dlistint_t *head)
+int sum_dlistint(stack_t *head)
 {
 	int sum = 0;
 
@@ -51,14 +51,14 @@ int sum_dlistint(dlistint_t *head)
 * @n: int to fill the new node
 * Return: new node
 */
-dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
+stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n)
 {
-	dlistint_t *new_node, *tmp1, *tmp2;
+	stack_t *new_node, *tmp1, *tmp2;
 	unsigned int i;
 
 	if (h == NULL)
 		return (NULL);
-	new_node = malloc(sizeof(dlistint_t));
+	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 		return (NULL);
 	new_node->n = n;
@@ -95,9 +95,9 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 * @index: index to delete
 * Return: 1 if it succeeded, -1 if it failed
 */
-int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
+int delete_dnodeint_at_index(stack_t **head, unsigned int index)
 {
-	dlistint_t *tmp;
+	stack_t *tmp;
 	unsigned int i;
 
 	if (head == NULL || *head == NULL)

@@ -8,10 +8,10 @@
 * @h: head linked list
 * Return: number of nodes of linked list
 */
-size_t print_dlistint(const dlistint_t *h)
+size_t print_dlistint(stack_t *h)
 {
 	int i;
-	const dlistint_t *tmp;
+	stack_t *tmp;
 
 	tmp = h;
 	i = 0;
@@ -31,10 +31,10 @@ size_t print_dlistint(const dlistint_t *h)
 * Return: len of linked list
 */
 
-size_t dlistint_len(const dlistint_t *h)
+size_t dlistint_len(stack_t *h)
 {
 	int i;
-	const dlistint_t *tmp;
+	stack_t *tmp;
 
 	tmp = h;
 	i = 0;
@@ -52,18 +52,18 @@ size_t dlistint_len(const dlistint_t *h)
 * @n: int to fill the node
 * Return: the new node
 */
-dlistint_t *add_dnodeint(dlistint_t **head, const int n)
+stack_t *add_dnodeint(stack_t **head)
 {
-	dlistint_t *new_node;
+	stack_t *new_node;
 
-	new_node = malloc(sizeof(dlistint_t));
+	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 		return (NULL);
 
 	new_node->prev = NULL;
 	new_node->next = *head;
 	*head = new_node;
-	new_node->n = n;
+	new_node->n = number;
 
 	if (new_node->next != NULL)
 		(new_node->next)->prev = new_node;
@@ -77,13 +77,13 @@ dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 * @n: number to fill the node
 * Return: the new node
 */
-dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
+stack_t *add_dnodeint_end(stack_t **head, const int n)
 {
-	dlistint_t *new_node, *st;
+	stack_t *new_node, *st;
 
 	st = *head;
 
-	new_node = malloc(sizeof(dlistint_t));
+	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 		return (NULL);
 
@@ -108,9 +108,9 @@ return (new_node);
 * free_dlistint - free linked list
 * @head: head of linked list
 */
-void free_dlistint(dlistint_t *head)
+void free_dlistint(stack_t *head)
 {
-	dlistint_t *st;
+	stack_t *st;
 
 	while (head)
 	{

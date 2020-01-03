@@ -37,25 +37,29 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-	void (*f)(int n);
-//        void (*f)(stack_t **stack, unsigned int line_number);
+//	void (*f)(int n);
+        void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/* global variable */
+extern int number;
 
 char *read_textfile(char *filename);
 char **tokenizar(char *buff, char *special);
-void push(int n);
-void check(char *buffer);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+int check(char *buffer, stack_t **header, unsigned int line_number);
 int check_number(char *num);
+int count_ar(char **token);
 
-size_t print_dlistint(const dlistint_t *h);
-size_t dlistint_len(const dlistint_t *h);
-dlistint_t *add_dnodeint(dlistint_t **head, const int n);
-dlistint_t *add_dnodeint_end(dlistint_t **head, const int n);
-void free_dlistint(dlistint_t *head);
-dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index);
-int sum_dlistint(dlistint_t *head);
-dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n);
-
+size_t print_dlistint(stack_t *h);
+/*size_t dlistint_len(stack_t *h);*/
+stack_t *add_dnodeint(stack_t **head);
+/*stack_t *add_dnodeint_end(stack_t **head, unsigned int n);
+void free_dlistint(stack_t *head);
+stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
+int sum_dlistint(stack_t *head);
+stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n);
+*/
 
 #endif
