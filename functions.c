@@ -53,20 +53,34 @@ char **tokenizar(char *buff, char *special)
 void check(char *buffer)
 {
 	instruction_t op[] = {{"push", push}, {NULL, NULL}};
-	int i = 0, num = 0;
+	int i = 0, is_num = 0, len = 0;
 	char **token;
+	stack_t **stack;
 
-	token = tokenizar(buffer, " ");
-	num = atoi(token[1]);
-
-	while (op[i].opcode != NULL)
+	len = strlen(buffer);
+	if (len < 1)
 	{
-		if (strcmp(token[0], op[i].opcode) == 0)
-			(op[i].f)(num);
-		i++;
+		fprintf(stderr, "L%d: usage: push integer", line_number);
+                exit(EXIT_FAILURE);
 	}
-
-
+	stack = NULL;
+	if ((is_num = check_num(token[1])) == 1)
+	{
+		token = tokenizar(buffer, " ");
+		number = atoi(token[1]);
+		while (op[i].opcode != NULL)
+		{
+			if (strcmp(token[0], op[i].opcode) == 0)
+				(op[i].f)(stack, line_number);
+			i++;
+		}
+		else
+		{
+                	printf(stderr, "L%d: usage: push integer", line_number);
+                	exit(EXIT_FAILURE);
+		}
+	}
+        	
 }
 
 /*
@@ -74,17 +88,15 @@ void check(char *buffer)
 *@num: char  pointer
 *Return: 1 if num is number or -1 if num is not a number
 */
+
 int check_number(char *num)
 {
-        int i;
+        int i = 0;
 
-        i = 0;
         while (num[i])
         {
                 if (num[i] < 47 || num[i] > 58)
-                {
-                        return (-1);
-                }
+			return (-1);
                 i++;
         }
         return (1);
