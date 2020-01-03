@@ -23,17 +23,30 @@ void push(stack_t **stack, unsigned int line_number)
 
 void pall(stack_t **stack, unsigned int line_number)
 {
-	(void) line_number;
-	int i;
 	stack_t *tmp;
+	(void) line_number;
 	
 /*	printf("entre");*/
 	tmp = *stack;
-	i = 0;
 	while (tmp)
 	{
 		printf("%d\n", tmp->n);
 		tmp = tmp->next;
-		i++;
+	}
+}
+void pint(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp2;
+
+	tmp2 = *stack;
+	if (tmp2 != NULL)
+	{
+		printf("%d\n", tmp2->n);
+	}
+	else
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+
 	}
 }

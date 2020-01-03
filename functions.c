@@ -52,7 +52,7 @@ char **tokenizar(char *buff, char *special)
 
 int check(char *buffer, stack_t **header, unsigned int line_number)
 {
-	instruction_t op[] = {{"push", push}, {"pall", pall}, {NULL, NULL}};
+	instruction_t op[] = {{"push", push}, {"pint", pint}, {"pall", pall}, {NULL, NULL}};
 	int i = 0, is_num = 0, len = 0;
 	char **token;
 	
