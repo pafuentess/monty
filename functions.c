@@ -19,14 +19,20 @@ char **tokenizar(char *buff, char *special)
 
 void check(char *buffer, stack_t **header, unsigned int line_number)
 {
-	instruction_t op[] = {{"push", push}, {"pint", pint}, {"pall", pall}, {NULL, NULL}};
-	int i = 0, is_num = 0, len = 0;
+	instruction_t op[] = {{"push", push}, {"pint", pint}, {"pall", pall},{"pop", pop}, {"swap", swap}, {NULL, NULL}};
+	int i = 0, is_num = 0, len = 0, compare_token = 0;
 	char **token;
 
 	token = tokenizar(buffer, "\t ");
 	if (token[0] == NULL)
 		return;
+	compare_token = strcmp(token[0], "push");
 	len = count_ar(token);
+	if (compare_token != 0 && len >= 2)
+	{
+		fprintf(stderr, "L%d: unknow instructions %s\n", line_number, token[0]);
+		exit(EXIT_FAILURE);
+	}
 	if (len < 2 && ((strcmp(token[0], "push") == 0)))
 	{	
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
