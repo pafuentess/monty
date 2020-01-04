@@ -1,38 +1,5 @@
 #include "monty.h"
 
-/**
-* read_textfile - eads a text file and prints it to
-* the POSIX standard output.
-* @filename: file to read
-* @letters: numbers of letters to read
-* Return: the text inside the file
-*/
-
-char *read_textfile(char *filename)
-{
-	int fd;
-	ssize_t st;
-	char *buff = malloc(1024 * sizeof(char *));
-
-	if (filename == NULL)
-		return (NULL);
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", filename);
-		exit(EXIT_FAILURE);
-	}
-
-	st = read(fd, buff, 1024);
-	close(fd);
-
-	if (st == -1)
-		return (NULL);
-
-	return (buff);
-}
-
 char **tokenizar(char *buff, char *special)
 {
 	char *check, **token = malloc(1024 * sizeof(char *));
@@ -50,28 +17,26 @@ char **tokenizar(char *buff, char *special)
 	return (token);
 }
 
-int check(char *buffer, stack_t **header, unsigned int line_number)
+void check(char *buffer, stack_t **header, unsigned int line_number)
 {
 	instruction_t op[] = {{"push", push}, {"pint", pint}, {"pall", pall}, {NULL, NULL}};
 	int i = 0, is_num = 0, len = 0;
 	char **token;
-	
-	token = tokenizar(buffer, " ");
+
+	token = tokenizar(buffer, "\t ");
+	if (token[0] == NULL)
+		return;
 	len = count_ar(token);
 	if (len < 2 && ((strcmp(token[0], "push") == 0)))
 	{	
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
-/*	printf("line number %d, len %d\n", line_number, len); */
-	
 	if (len >= 2)
 	{
 		if ((is_num = check_number(token[1])) == 1)
-			number = atoi(token[1]);
+			global.number = atoi(token[1]);
 	}
-
 	while (op[i].opcode != NULL)
 	{
 		if (strcmp(token[0], op[i].opcode) == 0)
@@ -84,9 +49,9 @@ int check(char *buffer, stack_t **header, unsigned int line_number)
 	if (op[i].opcode == NULL)
 	{	
 		fprintf(stderr, "L%d: unknown instructions %s\n", line_number, token[0]);
-                       exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
-	return (0);
+	return;
 }
 
 /*
@@ -115,4 +80,21 @@ int count_ar(char **token)
 	while (token[i])
 		i++;
 	return (i);
+}
+
+void get_op(char *ops, stack_t *stack, unsigned int line_number)
+{	
+	instruction_t op[] = {{"push", push}, {"pint", pint}, {"pall", pall}, {NULL, NULL}};
+
+	size_t i;
+	printf("entro al check");
+	for (i = 0; op[i].opcode != NULL; i++)
+	{
+		if (strcmp(op[i].opcode, ops) == 0)
+		{
+			op[i].f(&stack, line_number);
+			return;
+		}
+	}
+
 }

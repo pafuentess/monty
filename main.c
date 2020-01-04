@@ -1,12 +1,12 @@
 #include "monty.h"
 
-int number = 0;
+easy_t global = {0, NULL};
 
 int main(int argc, char **argv)
 {
-        char *buff, **token;
-	stack_t *stack;
-        int i = 0;
+        char *buff, *token;
+	FILE *fd;
+	size_t size;
 	unsigned int line_number = 1;
 
 	if (argc != 2)
@@ -14,15 +14,14 @@ int main(int argc, char **argv)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	stack = NULL;
-        buff = read_textfile(argv[1]);
-        token = tokenizar(buff, "\n");
-        while (token[i])
+	fd = fopen(argv[1], "r");
+        while (getline(&buff, &size, fd) != -1)
 	{
-                check(token[i], &stack, line_number);
-                i++;
+		token = strtok(buff, "\n\t\r");
+		check(token, (&global.stack), line_number);
 		line_number++;
-        }
+ 	}
         return (0);
+	exit (EXIT_SUCCESS);
 }
 

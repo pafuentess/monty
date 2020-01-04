@@ -40,28 +40,25 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* global variable */
-extern int number;
 
-char *read_textfile(char *filename);
+typedef struct easy_s
+{
+	int number;
+	stack_t *stack;
+} easy_t;
+
+/* global variable*/
+extern easy_t global;
+
 char **tokenizar(char *buff, char *special);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
-int check(char *buffer, stack_t **header, unsigned int line_number);
+void check(char *buffer, stack_t **header, unsigned int line_number);
 int check_number(char *num);
 int count_ar(char **token);
-
-size_t print_dlistint(stack_t *h);
-/*size_t dlistint_len(stack_t *h);*/
-stack_t *add_dnodeint(stack_t **head);
-/*stack_t *add_dnodeint_end(stack_t **head, unsigned int n);
-void free_dlistint(stack_t *head);
-stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
-int sum_dlistint(stack_t *head);
-stack_t *insert_dnodeint_at_index(stack_t **h, unsigned int idx, int n);
-*/
+void get_op(char *ops, stack_t *stack, unsigned int line_number);
 
 #endif
