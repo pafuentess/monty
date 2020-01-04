@@ -10,12 +10,24 @@ easy_t global = {0, NULL};
 */
 int main(int argc, char **argv)
 {
-	char *buff = malloc(1024 * sizeof(char *));
-	char *token = malloc(1024 * sizeof(char *));
+	char *buff;
+	char *token;
 	FILE *fd;
 	size_t size;
 	unsigned int line_number = 1;
-
+	
+	buff = malloc(1024 * sizeof(char *));
+	if (buff == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	token = malloc(1024 * sizeof(char *));
+	if (token == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -34,8 +46,8 @@ int main(int argc, char **argv)
 		line_number++;
 	}
 /*	free(buff);*/
-	free(token);
-	free_dlistint(global.stack);
+/*	free(token);*/
+/*	free_dlistint(&global.stack);*/
 	fclose(fd);
 	exit(EXIT_SUCCESS);
 }

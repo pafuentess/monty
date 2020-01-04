@@ -7,11 +7,15 @@
 */
 char **tokenizar(char *buff, char *special)
 {
-	char *check, **token = malloc(1024 * sizeof(char *));
+	char *check, **token;
 	int i;
 
+	token = malloc(1024 * sizeof(char *));
 	if (token == NULL)
-		exit(98);
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	check = strtok(buff, special);
 	for (i = 0; i < 1024 && check != NULL; i++)
 	{
@@ -32,8 +36,12 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 	instruction_t op[] = {{"push", push}, {"pall", pall}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"add", add}, {NULL, NULL}};
 	int i = 0, is_num = 0, len = 0;
-	char **token = malloc(1024 * sizeof(char *));
+	char **token;
 
+	token = malloc(1024 * sizeof(char *));
+	if (token == NULL)
+	{	fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE); }
 	token = tokenizar(buffer, "\t ");
 	if (token[0] == NULL)
 		return;
@@ -61,7 +69,6 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 /*		free(token);*/
 		fprintf(stderr, "L%d: unknown instructions %s\n", line_number, token[0]);
 		exit(EXIT_FAILURE); }
-	free(token);
 }
 
 /**
