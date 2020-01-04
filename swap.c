@@ -1,6 +1,9 @@
 #include "monty.h"
-
-
+/**
+*swap- The opcode swap swaps the top two elements of the stack
+*@stack: head of a linked list
+*@line_number: line number
+*/
 void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp, *tmp1, *tmp2;
@@ -15,7 +18,7 @@ void swap(stack_t **stack, unsigned int line_number)
 		i++;
 	}
 	if (i >= 2)
-	{	
+	{
 		tmp1 = *stack;
 		tmp2 = tmp1->next;
 		a = tmp1->n;
