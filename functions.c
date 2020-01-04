@@ -1,5 +1,10 @@
 #include "monty.h"
-
+/**
+*tokenizar- tokenize the buffer
+*@buff: buffer
+*@special: delimiter
+*Return: tokenize buffer
+*/
 char **tokenizar(char *buff, char *special)
 {
 	char *check, **token = malloc(1024 * sizeof(char *));
@@ -16,7 +21,12 @@ char **tokenizar(char *buff, char *special)
 	token[i] = NULL;
 	return (token);
 }
-
+/**
+*check- function to check words
+*@buffer: buffer
+*@header: double pointer stack_t
+*@line_number: line number
+*/
 void check(char *buffer, stack_t **header, unsigned int line_number)
 {
 	instruction_t op[] = {{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop}, {"swap", swap}, {"add", add}, {NULL, NULL}};
@@ -34,13 +44,14 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	if (len < 2 && ((strcmp(token[0], "push") == 0)))
-	{	
+	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if (len >= 2)
 	{
-		if ((is_num = check_number(token[1])) == 1)
+		is_num = check_number(token[1]);
+		if (is_num == 1)
 			global.number = atoi(token[1]);
 	}
 	while (op[i].opcode != NULL)
@@ -53,46 +64,54 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 		i++;
 	}
 	if (op[i].opcode == NULL)
-	{	
+	{
 		fprintf(stderr, "L%d: unknown instructions %s\n", line_number, token[0]);
 		exit(EXIT_FAILURE);
 	}
-	return;
 }
 
-/*
+/**
 *check_number- check if num is number
 *@num: char  pointer
 *Return: 1 if num is number or -1 if num is not a number
 */
-
 int check_number(char *num)
 {
-        int i = 0;
+	int i = 0;
 
-        while (num[i])
-        {
-                if (num[i] < 47 || num[i] > 58)
-			return (-1);
-                i++;
-        }
-        return (1);
+	while (num[i])
+	{
+		if (num[i] < 47 || num[i] > 58)
+		return (-1);
+		i++;
+	}
+	return (1);
 }
-
+/**
+*count_ar- count
+*@token: double pointer
+*Return: integer
+*/
 int count_ar(char **token)
 {
 	int i = 0;
-	
+
 	while (token[i])
 		i++;
 	return (i);
 }
-
+/**
+*get_op- get...
+*@ops: char pointer
+*@stack: pointer stack_t
+*@line_number: line number
+*/
 void get_op(char *ops, stack_t *stack, unsigned int line_number)
-{	
+{
 	instruction_t op[] = {{"push", push}, {"pint", pint}, {"pall", pall}, {NULL, NULL}};
 
 	size_t i;
+
 	printf("entro al check");
 	for (i = 0; op[i].opcode != NULL; i++)
 	{
