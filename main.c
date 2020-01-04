@@ -1,5 +1,7 @@
 #include "monty.h"
+
 easy_t global = {0, NULL};
+
 /**
 *main - Execute Monty language
 *@argc: Number of arguments
@@ -26,6 +28,5 @@ int main(int argc, char **argv)
 		check(token, (&global.stack), line_number);
 		line_number++;
 	}
-	return (0);
 	exit(EXIT_SUCCESS);
 }

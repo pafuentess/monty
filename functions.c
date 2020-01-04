@@ -29,7 +29,8 @@ char **tokenizar(char *buff, char *special)
 */
 void check(char *buffer, stack_t **header, unsigned int line_number)
 {
-	instruction_t op[] = {{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop}, {"swap", swap}, {"add", add}, {NULL, NULL}};
+	instruction_t op[] = {{"push", push}, {"pall", pall}, {"pint", pint},
+		{"pop", pop}, {"swap", swap}, {"add", add}, {NULL, NULL}};
 	int i = 0, is_num = 0, len = 0, compare_token = 0;
 	char **token = malloc(1024 * sizeof(char *));
 
@@ -39,15 +40,11 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 	compare_token = strcmp(token[0], "push");
 	len = count_ar(token);
 	if (compare_token != 0 && len >= 2)
-	{
-		fprintf(stderr, "L%d: unknow instructions %s\n", line_number, token[0]);
-		exit(EXIT_FAILURE);
-	}
+	{	fprintf(stderr, "L%d: unknow instructions %s\n", line_number, token[0]);
+		exit(EXIT_FAILURE); }
 	if (len < 2 && ((strcmp(token[0], "push") == 0)))
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+	{	fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE); }
 	if (len >= 2)
 	{
 		is_num = check_number(token[1]);
@@ -64,10 +61,8 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 		i++;
 	}
 	if (op[i].opcode == NULL)
-	{
-		fprintf(stderr, "L%d: unknown instructions %s\n", line_number, token[0]);
-		exit(EXIT_FAILURE);
-	}
+	{	fprintf(stderr, "L%d: unknown instructions %s\n", line_number, token[0]);
+		exit(EXIT_FAILURE); }
 }
 
 /**
@@ -99,27 +94,4 @@ int count_ar(char **token)
 	while (token[i])
 		i++;
 	return (i);
-}
-/**
-*get_op- get...
-*@ops: char pointer
-*@stack: pointer stack_t
-*@line_number: line number
-*/
-void get_op(char *ops, stack_t *stack, unsigned int line_number)
-{
-	instruction_t op[] = {{"push", push}, {"pint", pint}, {"pall", pall}, {NULL, NULL}};
-
-	size_t i;
-
-	printf("entro al check");
-	for (i = 0; op[i].opcode != NULL; i++)
-	{
-		if (strcmp(op[i].opcode, ops) == 0)
-		{
-			op[i].f(&stack, line_number);
-			return;
-		}
-	}
-
 }
