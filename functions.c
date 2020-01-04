@@ -43,7 +43,7 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 	{	fprintf(stderr, "L%d: unknow instructions %s\n", line_number, token[0]);
 		exit(EXIT_FAILURE); }
 	if (len < 2 && ((strcmp(token[0], "push") == 0)))
-	{	fprintf(stderr, "L%d: usage: push integer\n", line_number);
+	{	fprintf(stderr, "L%d: push integer\n", line_number);
 		exit(EXIT_FAILURE); }
 	if (len >= 2)
 	{
@@ -79,7 +79,7 @@ int check_number(char *num, unsigned int line_number)
 	{
 		if (num[i] < 47 || num[i] > 58)
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			fprintf(stderr, "L%d: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
 		i++;
