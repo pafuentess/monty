@@ -19,7 +19,7 @@ char **tokenizar(char *buff, char *special)
 
 void check(char *buffer, stack_t **header, unsigned int line_number)
 {
-	instruction_t op[] = {{"push", push}, {"pint", pint}, {"pall", pall},{"pop", pop}, {"swap", swap}, {NULL, NULL}};
+	instruction_t op[] = {{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop}, {"swap", swap}, {"add", add}, {NULL, NULL}};
 	int i = 0, is_num = 0, len = 0, compare_token = 0;
 	char **token = malloc(1024 * sizeof(char *));
 
