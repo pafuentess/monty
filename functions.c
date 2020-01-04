@@ -47,7 +47,7 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 		exit(EXIT_FAILURE); }
 	if (len >= 2)
 	{
-		is_num = check_number(token[1]);
+		is_num = check_number(token[1], line_number);
 		if (is_num == 1)
 			global.number = atoi(token[1]);
 	}
@@ -68,16 +68,20 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 /**
 *check_number- check if num is number
 *@num: char  pointer
+*@line_number: line number
 *Return: 1 if num is number or -1 if num is not a number
 */
-int check_number(char *num)
+int check_number(char *num, unsigned int line_number)
 {
 	int i = 0;
 
 	while (num[i])
 	{
 		if (num[i] < 47 || num[i] > 58)
-		return (-1);
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 		i++;
 	}
 	return (1);
