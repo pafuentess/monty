@@ -22,11 +22,20 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	fd = fopen(argv[1], "r");
+	if (fd == NULL)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
 	while (getline(&buff, &size, fd) != -1)
 	{
 		token = strtok(buff, "\n\t\r");
 		check(token, (&global.stack), line_number);
 		line_number++;
 	}
+/*	free(buff);*/
+	free(token);
+	free_dlistint(global.stack);
+	fclose(fd);
 	exit(EXIT_SUCCESS);
 }
