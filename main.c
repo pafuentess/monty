@@ -4,7 +4,7 @@ easy_t global = {0, NULL};
 
 int main(int argc, char **argv)
 {
-        char *buff, *token;
+        char *buff = malloc(1024 *sizeof(char *)), *token = malloc(1024 * sizeof(char *));
 	FILE *fd;
 	size_t size;
 	unsigned int line_number = 1;

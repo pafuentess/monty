@@ -21,7 +21,7 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 {
 	instruction_t op[] = {{"push", push}, {"pint", pint}, {"pall", pall},{"pop", pop}, {"swap", swap}, {NULL, NULL}};
 	int i = 0, is_num = 0, len = 0, compare_token = 0;
-	char **token;
+	char **token = malloc(1024 * sizeof(char *));
 
 	token = tokenizar(buffer, "\t ");
 	if (token[0] == NULL)
