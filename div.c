@@ -6,7 +6,7 @@
 */
 void div_fun(stack_t **stack, unsigned int line_number)
 {
-	int len = 0, a = 0, b = 0;
+	int len = 0, a = 0, b = 0, result = 0;
 	stack_t *temp, *temp1, *temp2;
 
 	temp = *stack;
@@ -33,10 +33,11 @@ void div_fun(stack_t **stack, unsigned int line_number)
 		}
 		else
 		{
-			temp2->n = b / a;
-			free(temp1);
+			result = b / a;
+			temp2->n = result;
 			*stack = temp2;
 			(*stack)->prev = NULL;
+			free(temp1);
 		}
 	}
 }
