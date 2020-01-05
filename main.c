@@ -38,5 +38,6 @@ int main(int argc, char **argv)
 	free_stack(&stack);
 	free(buff);
 	fclose(fd);
+	buff = NULL;
 	exit(EXIT_SUCCESS);
 }
