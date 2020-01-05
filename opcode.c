@@ -42,16 +42,8 @@ void push(stack_t **stack, unsigned int line_number)
 */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = NULL;
 	(void) line_number;
-
-	temp = *stack;
-	while (*stack != NULL)
-	{
-		printf("%d\n", (*stack)->n);
-		*stack = (*stack)->next;
-	}
-	*stack = temp;
+	print_dlistint(*stack);
 }
 
 /**
