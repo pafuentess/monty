@@ -6,7 +6,7 @@
 */
 void div_fun(stack_t **stack, unsigned int line_number)
 {
-	int len = 0, a = 0, b = 0, result = 0;
+	int len = 0, a = 0, b = 0;
 	stack_t *temp, *temp1, *temp2;
 
 	temp = *stack;
