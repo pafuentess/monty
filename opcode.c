@@ -11,10 +11,13 @@ void push(stack_t **stack, unsigned int line_number)
 	int is_num = 0, number = 0;
 	(void) line_number;
 
-	if (!stack)
-		fprintf(stderr, "No stack.");
-
 	arg = strtok(NULL, "\n\t\r ");
+	if (arg == NULL)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
 	is_num = check_number(arg, line_number);
 	if (is_num == 1)
 		number = atoi(arg);
