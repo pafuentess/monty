@@ -20,22 +20,16 @@ void div_fun(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	else
+	temp1 = *stack;
+	temp2 = temp1->next;
+	a = temp1->n;
+	b = temp2->n;
+	if (a == 0)
 	{
-		temp1 = *stack;
-		temp2 = temp1->next;
-		a = temp1->n;
-		b = temp2->n;
-		if (a == 0)
-		{
-			fprintf(stderr, "L%d: division by zero", line_number);
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			result = b / a;
-			temp2->n = result;
-			delete_head(stack);
-		}
+		fprintf(stderr, "L%d: division by zero", line_number);
+		exit(EXIT_FAILURE);
 	}
+	temp2->n = b / a;
+	delete_head(stack);
 }
+
