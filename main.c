@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 	}
 	while (getline(&buff, &size, fd) != -1)
 	{
-		token = strtok(buff, "\n\t\r ");
+		token = strtok(buff, "\n\t ");
 		if (token != NULL)
 			check(token, &stack, line_number);
 		line_number++;
