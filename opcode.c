@@ -8,23 +8,19 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
 	char *arg;
-	int is_num = 0, number = 0;
+	int number = 0;
 	(void) line_number;
 
 	if (stack == NULL)
 		exit(1);
 
 	arg = strtok(NULL, "\n\t\r ");
-	if (arg == NULL)
+	if (arg == NULL || check_number(arg, line_number))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
-	is_num = check_number(arg, line_number);
-	if (is_num == 1)
-		number = atoi(arg);
-
+	number = atoi(arg);
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{

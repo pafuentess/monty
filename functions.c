@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <ctype.h>
 
 /**
 *check- function to check words
@@ -38,20 +39,18 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 int check_number(char *num, unsigned int line_number)
 {
 	int i = 0;
+	(void) line_number;
 
 	if (num[i] == '-')
 		i++;
-
+	
 	while (num[i])
 	{
-		if (num[i] < 47 || num[i] > 58)
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			exit(EXIT_FAILURE);
-		}
+		if(isdigit(num[i]) == 0)
+			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 /**
 *count_ar- count
