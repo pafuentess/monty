@@ -17,18 +17,15 @@ void swap(stack_t **stack, unsigned int line_number)
 		tmp = tmp->next;
 		i++;
 	}
-	if (i >= 2)
+	if (i < 2)
 	{
-		tmp1 = *stack;
-		tmp2 = tmp1->next;
-		a = tmp1->n;
-		b = tmp2->n;
-		tmp1->n = b;
-		tmp2->n = a;
-	}
-	else
-	{
-		fprintf(stderr, "L%d: cant't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	tmp1 = *stack;
+	tmp2 = tmp1->next;
+	a = tmp1->n;
+	b = tmp2->n;
+	tmp1->n = b;
+	tmp2->n = a;
 }
