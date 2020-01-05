@@ -24,6 +24,7 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 		i++;
 	}
 	free_stack(header);
+	fclose(fd);
 	fprintf(stderr, "L%d: unknown instructions %s\n", line_number, buffer);
 	exit(EXIT_FAILURE);
 }

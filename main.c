@@ -6,11 +6,13 @@
 *@argv: arguments
 *Return: Integer 0
 */
+
+FILE *fd = NULL;
 int main(int argc, char **argv)
 {
 	char *buff = NULL;
 	char *token = NULL;
-	FILE *fd;
+/*	FILE *fd;*/
 	size_t size;
 	stack_t *stack;
 	unsigned int line_number = 1;
