@@ -6,7 +6,6 @@
 */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node;
 	char *arg;
 	int number = 0;
 	(void) line_number;
@@ -21,19 +20,11 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	number = atoi(arg);
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
+	if (addnode(stack, number) == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		dprintf(STDOUT_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	new_node->prev = NULL;
-	new_node->next = *stack;
-	*stack = new_node;
-	new_node->n = number;
-
-	if (new_node->next != NULL)
-		(new_node->next)->prev = new_node;
 }
 /**
 *pall- Prints all the values on the stack, starting from the top

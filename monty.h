@@ -57,6 +57,6 @@ int count_ar(char **token);
 void get_op(char *ops, stack_t *stack, unsigned int line_number);
 void free_stack(stack_t **stack);
 size_t print_dlistint(const stack_t *h);
-
+stack_t *addnode(stack_t **head, int n);
 
 #endif
