@@ -10,20 +10,15 @@ void push(stack_t **stack, unsigned int line_number)
 	int number = 0;
 	(void) line_number;
 
-	if (stack == NULL)
-		exit(1);
-
 	arg = strtok(NULL, "\n\t\r ");
 	if (arg == NULL || check_number(arg, line_number))
 	{
-		fclose(fd);
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	number = atoi(arg);
 	if (addnode(stack, number) == NULL)
 	{
-		fclose(fd);
 		dprintf(STDOUT_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
@@ -58,10 +53,8 @@ void pint(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		fclose(fd);
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 
 	}
 }
-
