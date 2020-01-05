@@ -10,7 +10,7 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 {
 	instruction_t op[] = {{"push", push}, {"pall", pall}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop}, {"sub", sub},
-		{NULL, NULL}};
+		{"div", div_fun}, {NULL, NULL}};
 	int i = 0;
 
 	while (op[i].opcode != NULL)
@@ -24,7 +24,7 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 	}
 	if (op[i].opcode == NULL)
 	{
-/*		free(token);*/
+		free_stack(header);
 		fprintf(stderr, "L%d: unknown instructions %s\n", line_number, buffer);
 		exit(EXIT_FAILURE); }
 }
