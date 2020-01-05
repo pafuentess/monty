@@ -19,15 +19,13 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 		if (strcmp(buffer, op[i].opcode) == 0)
 		{
 			(op[i].f)(header, line_number);
-			break;
+			return;
 		}
 		i++;
 	}
-	if (op[i].opcode == NULL)
-	{
-		free_stack(header);
-		fprintf(stderr, "L%d: unknown instructions %s\n", line_number, buffer);
-		exit(EXIT_FAILURE); }
+	free_stack(header);
+	fprintf(stderr, "L%d: unknown instructions %s\n", line_number, buffer);
+	exit(EXIT_FAILURE);
 }
 
 /**
