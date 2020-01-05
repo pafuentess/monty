@@ -4,18 +4,18 @@
 #include "monty.h"
 
 /**
-* free_dlistint - free linked list
-* @head: head of linked list
+* free_stack - free linked list
+* @stack: head of linked list
 */
 
-void free_dlistint(stack_t *head)
+void free_stack(stack_t **stack)
 {
-	stack_t *st;
+	stack_t *tmp;
 
-	while (head)
+	while (*stack)
 	{
-		st = head->next;
-		free(head);
-		head = st;
+		tmp = *stack;
+		*stack = (*stack)->next;
+		free(tmp);
 	}
 }

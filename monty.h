@@ -40,22 +40,6 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
-* struct easy_s - struct to global variable
-* @number: data
-* @stack: pointer
-*/
-
-typedef struct easy_s
-{
-	int number;
-	stack_t *stack;
-} easy_t;
-
-/* global variable*/
-extern easy_t global;
-
-char **tokenizar(char *buff, char *special);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
@@ -66,6 +50,7 @@ void check(char *buffer, stack_t **header, unsigned int line_number);
 int check_number(char *num, unsigned int line_number);
 int count_ar(char **token);
 void get_op(char *ops, stack_t *stack, unsigned int line_number);
-void free_dlistint(stack_t *head);
+void free_stack(stack_t **stack);
+
 
 #endif

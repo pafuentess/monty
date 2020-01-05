@@ -1,30 +1,5 @@
 #include "monty.h"
-/**
-*tokenizar- tokenize the buffer
-*@buff: buffer
-*@special: delimiter
-*Return: tokenize buffer
-*/
-char **tokenizar(char *buff, char *special)
-{
-	char *check, **token;
-	int i;
 
-	token = malloc(1024 * sizeof(char *));
-	if (token == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-	check = strtok(buff, special);
-	for (i = 0; i < 1024 && check != NULL; i++)
-	{
-		token[i] = check;
-		check = strtok(NULL, special);
-	}
-	token[i] = NULL;
-	return (token);
-}
 /**
 *check- function to check words
 *@buffer: buffer
@@ -35,29 +10,11 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 {
 	instruction_t op[] = {{"push", push}, {"pall", pall}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"add", add}, {NULL, NULL}};
-	int i = 0, is_num = 0, len = 0;
-	char **token;
+	int i = 0;
 
-	token = malloc(1024 * sizeof(char *));
-	if (token == NULL)
-	{	fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE); }
-	token = tokenizar(buffer, "\t ");
-	if (token[0] == NULL)
-		return;
-	len = count_ar(token);
-	if (len < 2 && ((strcmp(token[0], "push") == 0)))
-	{	fprintf(stderr, "L%i: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE); }
-	if (len >= 2 && ((strcmp(token[0], "push") == 0)))
-	{
-		is_num = check_number(token[1], line_number);
-		if (is_num == 1)
-			global.number = atoi(token[1]);
-	}
 	while (op[i].opcode != NULL)
 	{
-		if (strcmp(token[0], op[i].opcode) == 0)
+		if (strcmp(buffer, op[i].opcode) == 0)
 		{
 			(op[i].f)(header, line_number);
 			break;
@@ -67,7 +24,7 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 	if (op[i].opcode == NULL)
 	{
 /*		free(token);*/
-		fprintf(stderr, "L%d: unknown instructions %s\n", line_number, token[0]);
+		fprintf(stderr, "L%d: unknown instructions %s\n", line_number, buffer);
 		exit(EXIT_FAILURE); }
 }
 

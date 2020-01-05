@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -Wall -Werror -Wextra -pedantic *.c -o monty
+gcc -ggdb3 -Wall -Werror -Wextra -pedantic *.c -o monty

@@ -1,7 +1,5 @@
 #include "monty.h"
 
-easy_t global = {0, NULL};
-
 /**
 *main - Execute Monty language
 *@argc: Number of arguments
@@ -10,29 +8,19 @@ easy_t global = {0, NULL};
 */
 int main(int argc, char **argv)
 {
-	char *buff;
-	char *token;
+	char *buff = NULL;
+	char *token = NULL;
 	FILE *fd;
 	size_t size;
+	stack_t *stack;
 	unsigned int line_number = 1;
-	
-	buff = malloc(1024 * sizeof(char *));
-	if (buff == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-	token = malloc(1024 * sizeof(char *));
-	if (token == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
+	stack = NULL;
 	fd = fopen(argv[1], "r");
 	if (fd == NULL)
 	{
@@ -41,13 +29,14 @@ int main(int argc, char **argv)
 	}
 	while (getline(&buff, &size, fd) != -1)
 	{
-		token = strtok(buff, "\n\t\r");
-		check(token, (&global.stack), line_number);
+		token = strtok(buff, "\n\t\r ");
+		if (token != NULL)
+			check(token, &stack, line_number);
 		line_number++;
+
 	}
-/*	free(buff);*/
-/*	free(token);*/
-/*	free_dlistint(&global.stack);*/
+	free_stack(&stack);
+	free(buff);
 	fclose(fd);
 	exit(EXIT_SUCCESS);
 }
