@@ -63,6 +63,9 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp2;
 
+	if (stack == NULL)
+		exit(1);
+
 	tmp2 = *stack;
 	if (tmp2 != NULL)
 	{

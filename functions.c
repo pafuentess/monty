@@ -43,10 +43,10 @@ int check_number(char *num, unsigned int line_number)
 
 	if (num[i] == '-')
 		i++;
-	
+
 	while (num[i])
 	{
-		if(isdigit(num[i]) == 0)
+		if (isdigit(num[i]) == 0)
 			return (1);
 		i++;
 	}
