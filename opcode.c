@@ -52,8 +52,8 @@ void pall(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stdout, "%i\n", tmp->n);
 		tmp = tmp->next;
-		if (tmp == *stack)
-			return;
+/*		if (tmp == *stack)
+			return;*/
 	}
 }
 /**
