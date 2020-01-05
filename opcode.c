@@ -19,7 +19,7 @@ void push(stack_t **stack, unsigned int line_number)
 	number = atoi(arg);
 	if (addnode(stack, number) == NULL)
 	{
-		dprintf(STDOUT_FILENO, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 }
