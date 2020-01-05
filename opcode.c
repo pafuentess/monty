@@ -42,20 +42,18 @@ void push(stack_t **stack, unsigned int line_number)
 */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = NULL;
+	stack_t *temp = NULL;
 	(void) line_number;
 
-	if (stack == NULL)
-		exit(1);
-	tmp = *stack;
-	while (tmp)
+	temp = *stack;
+	while (*stack != NULL)
 	{
-		fprintf(stdout, "%i\n", tmp->n);
-		tmp = tmp->next;
-/*		if (tmp == *stack)
-			return;*/
+		printf("%d\n", (*stack)->n);
+		*stack = (*stack)->next;
 	}
+	*stack = temp;
 }
+
 /**
 *pint- Print the value at the top of the stack
 *@stack: head of a linked list
