@@ -14,7 +14,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 	tmp2 = *stack;
 	if (tmp2 != NULL)
 	{
-		if (tmp2->n >= 20 && tmp2->n <= 127)
+		if (tmp2->n >= 0 && tmp2->n <= 255)
 			fprintf(stdout, "%c\n", tmp2->n);
 		else
 		{
