@@ -18,6 +18,7 @@ void add(stack_t **stack, unsigned int line_number)
 	if  (len < 2)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short", line_number);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{

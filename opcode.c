@@ -10,7 +10,7 @@ void push(stack_t **stack, unsigned int line_number)
 	char *arg;
 	int is_num = 0, number = 0;
 	(void) line_number;
-	
+
 	arg = strtok(NULL, "\n\t\r ");
 	is_num = check_number(arg, line_number);
 	if (is_num == 1)
@@ -18,7 +18,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
-	{	
+	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
@@ -45,6 +45,8 @@ void pall(stack_t **stack, unsigned int line_number)
 	{
 		printf("%d\n", tmp->n);
 		tmp = tmp->next;
+		if (tmp == *stack)
+			return;
 	}
 }
 /**
