@@ -31,6 +31,7 @@ void div_fun(stack_t **stack, unsigned int line_number)
 	}
 	temp2->n = b / a;
 	*stack = temp2;
-	delete_head(&temp1);
+	free(temp1);
+	temp2->prev = NULL;
 }
 
