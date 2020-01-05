@@ -30,6 +30,7 @@ void div_fun(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	temp2->n = b / a;
-	delete_head(stack);
+	*stack = temp2;
+	delete_head(&temp1);
 }
 
