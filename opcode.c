@@ -42,7 +42,7 @@ void push(stack_t **stack, unsigned int line_number)
 */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp;
+	stack_t *tmp = NULL;
 	(void) line_number;
 
 	if (stack == NULL)
@@ -52,9 +52,8 @@ void pall(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stdout, "%i\n", tmp->n);
 		tmp = tmp->next;
-		if (tmp == *stack)
-			return;
 	}
+	*stack = tmp;
 }
 /**
 *pint- Print the value at the top of the stack
