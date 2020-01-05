@@ -11,6 +11,9 @@ void push(stack_t **stack, unsigned int line_number)
 	int is_num = 0, number = 0;
 	(void) line_number;
 
+	if (stack == NULL)
+		exit(1);
+
 	arg = strtok(NULL, "\n\t\r ");
 	if (arg == NULL)
 	{
