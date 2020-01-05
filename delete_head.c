@@ -1,8 +1,8 @@
 #include "monty.h"
 
 /**
-delete_head - deletes top of linked list
-* @head: top of linked list
+* delete_head - deletes top of linked list
+* @stack: top of linked list
 */
 
 void delete_head(stack_t **stack)
