@@ -6,19 +6,30 @@
 */
 void rotr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *Prev = NULL;
-	stack_t *Next = NULL;
-	unsigned int i = 0;
+
+	int a = 0, i = 0;
+	stack_t *temp;
 	(void) line_number;
 
-	while ((*stack)->next)
+	if (*stack == NULL)
+		return;
+	
+	temp = *stack;
+	if (temp->next == NULL)
+		return;
+
+	while (temp->next)
 	{
-		Next = (*stack)->next;
-		(*stack)->next = Prev;
-		Prev = *stack;
-		*stack = Next;
+		temp = temp->next;
 	}
-	*stack = Prev;
+	a = temp->n;
+	while (temp->prev)
+	{
+		temp->n = temp->prev->n;
+		temp = temp->prev;
+	}
+	temp->n = a;
+
 	while (*stack)
 	{
 		fprintf(stdout, "%d\n", (*stack)->n);
