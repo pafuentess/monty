@@ -8,20 +8,16 @@
 
 void rotl(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp1 = *stack, *tmp2 = *stack, *tmp3 = NULL;
+	stack_t *tmp = *stack;
+	int number;
 	(void) line_number;
 
-	if (*stack == NULL)
-		return;
-	tmp3 = tmp1->next;
-	while (tmp1->next != NULL)
+	tmp = *stack;
+	number = tmp->n;
+	while (tmp->next != NULL)
 	{
-		tmp1 = tmp1->next;
+		tmp->n = tmp->next->n;
+		tmp = tmp->next;
 	}
-	tmp1->next = *stack;
-	tmp2->prev = tmp1;
-	tmp2->next = NULL;
-	*stack = tmp3;
-	(*stack)->prev = NULL;
-
+	tmp->n = number;
 }
