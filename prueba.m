@@ -23,3 +23,4 @@ push 6
 div
 pall
 sub
+pall
