@@ -16,3 +16,5 @@ pall
 push 5
 add
 pall
+pop
+pall
