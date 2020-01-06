@@ -23,6 +23,6 @@ void pstr(stack_t **stack, unsigned int line_number)
 				break;
 			tmp = tmp->next;
 		}
-		fprintf(stdout, "\n");
 	}
+	fprintf(stdout, "\n");
 }
