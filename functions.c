@@ -12,7 +12,7 @@ void check(char *buffer, stack_t **header, unsigned int line_number)
 	instruction_t op[] = {{"push", push}, {"pall", pall}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop}, {"sub", sub},
 		{"div", div_fun}, {"mul", mult}, {"mod", mod_fun}, {"pchar", pchar},
-		{"pstr", pstr}, {"rotr", rotr}, {NULL, NULL}};
+		{"pstr", pstr}, {"rotl", rotl}, {"rotr", rotr}, {NULL, NULL}};
 	int i = 0;
 
 	while (op[i].opcode != NULL)
