@@ -28,7 +28,7 @@ void mod_fun(stack_t **stack, unsigned int line_number)
 		b = temp2->n;
 		if (a == 0)
 		{
-			fprintf(stderr, "L%d: division by zero", line_number);
+			fprintf(stderr, "L%d: division by zero\n", line_number);
 			exit(EXIT_FAILURE);
 		}
 		else
