@@ -12,5 +12,7 @@ To compile the program, it must be compiled with the following command:
 ```bash
 gcc -Wall -Werror -Wextra -pedantic *.c -o monty
 ```
+### Execution
+
 README.md: Description of the repository.
 AUTHORS: Paula Fuentes, Yulieth Zuluaga.
