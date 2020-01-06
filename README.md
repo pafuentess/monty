@@ -8,5 +8,6 @@ To clone the repository, you must type the following command:
 git clone https://github.com/pafuentess/monty.git
 ```
 ### Compilation
+To compile the program, it must be compiled with the following command:
 README.md: Description of the repository.
 AUTHORS: Paula Fuentes, Yulieth Zuluaga.
