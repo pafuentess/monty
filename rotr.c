@@ -7,7 +7,7 @@
 void rotr(stack_t **stack, unsigned int line_number)
 {
 
-	int a = 0, i = 0;
+	int a = 0;
 	stack_t *temp;
 	(void) line_number;
 
@@ -29,11 +29,4 @@ void rotr(stack_t **stack, unsigned int line_number)
 		temp = temp->prev;
 	}
 	temp->n = a;
-
-	while (*stack)
-	{
-		fprintf(stdout, "%d\n", (*stack)->n);
-		*stack = (*stack)->next;
-		i++;
-	}
 }
