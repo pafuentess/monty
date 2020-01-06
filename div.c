@@ -24,7 +24,7 @@ void div_fun(stack_t **stack, unsigned int line_number)
 	pop(stack, line_number);
 	if (a == 0)
 	{
-		fprintf(stderr, "L%d: division by zero", line_number);
+		fprintf(stderr, "L%d: division by zero\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->n = (*stack)->n / a;
