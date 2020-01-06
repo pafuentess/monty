@@ -18,3 +18,5 @@ add
 pall
 pop
 pall
+push 
+push 6
