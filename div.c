@@ -29,4 +29,3 @@ void div_fun(stack_t **stack, unsigned int line_number)
 	}
 	(*stack)->n = (*stack)->n / a;
 }
-
