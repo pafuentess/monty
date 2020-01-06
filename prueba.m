@@ -27,3 +27,4 @@ pall
 mult
 pall
 pint
+push push
