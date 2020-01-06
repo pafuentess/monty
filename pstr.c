@@ -13,7 +13,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 	tmp = *stack;
 	while (tmp)
 	{
-		if ((tmp->n >= 0 && tmp->n <=  255))
+		if ((tmp->n >= 0 && tmp->n <=  127))
 		{
 			fprintf(stdout, "%c", tmp->n);
 		}
