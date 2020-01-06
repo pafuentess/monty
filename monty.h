@@ -53,6 +53,7 @@ void mult(stack_t **stack, unsigned int line_number);
 void mod_fun(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
 void check(char *buffer, stack_t **header, unsigned int line_number);
 int check_number(char *num, unsigned int line_number);
 int count_ar(char **token);
