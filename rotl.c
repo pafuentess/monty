@@ -12,6 +12,8 @@ void rotl(stack_t **stack, unsigned int line_number)
 	int number;
 	(void) line_number;
 
+	if (*stack == NULL)
+		return;
 	tmp = *stack;
 	if (tmp->next == NULL)
 		return;
