@@ -3,3 +3,6 @@ Monty 0.98 is a scripting language that is first compiled into Monty byte codes 
 ## Instructions
 
 ### Clone repository
+To clone the repository, you must type the following command:
+```bash
+git clone
