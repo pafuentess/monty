@@ -8,3 +8,4 @@ To clone the repository, you must type the following command:
 git clone https://github.com/pafuentess/monty.git
 ```
 README.md: Description of the repository.
+AUTHORS: Paula Fuentes, Yulieth Zuluaga.
