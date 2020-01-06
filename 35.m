@@ -15,3 +15,4 @@ rotl
 pall
 push 5
 add
+pall
