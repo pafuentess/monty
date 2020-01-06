@@ -24,3 +24,4 @@ div
 pall
 sub
 pall
+mult
