@@ -11,15 +11,18 @@ void pstr(stack_t **stack, unsigned int line_number)
 	(void) line_number;
 
 	tmp = *stack;
-	while (tmp)
+	if (tmp != NULL)
 	{
-		if ((tmp->n >= 0 && tmp->n <=  127))
+		while (tmp)
 		{
-			fprintf(stdout, "%c", tmp->n);
+			if ((tmp->n >= 0 && tmp->n <=  127))
+			{
+				fprintf(stdout, "%c", tmp->n);
+			}
+			tmp = tmp->next;
+			if (tmp == *stack)
+				return;
 		}
-		tmp = tmp->next;
-		if (tmp == *stack)
-			return;
 	}
 	fprintf(stdout, "\n");
 }
