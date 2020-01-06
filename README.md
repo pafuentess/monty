@@ -14,6 +14,8 @@ gcc -Wall -Werror -Wextra -pedantic *.c -o monty
 ```
 ### Execution
 To execute the program you must type:
-
+```bash
+(./monty)
+```
 README.md: Description of the repository.
 AUTHORS: Paula Fuentes, Yulieth Zuluaga.
